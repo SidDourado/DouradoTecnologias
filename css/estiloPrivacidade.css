@@ -1,0 +1,91 @@
+/* =========================================
+   ESTILO ESPECÍFICO DA PÁGINA DE PRIVACIDADE
+   ========================================= */
+
+/* Ajuste do Header para página sem banner:
+   Como a página de privacidade não tem o banner "Hero", 
+   o menu (que é transparente) ficaria invisível no fundo branco.
+   Forçamos ele a ter a cor secundária (Azul Escuro).
+*/
+.header {
+    background-color: var(--secondary-color) !important;
+    position: relative; /* Muda de fixed para relative ou mantém fixed com padding no body */
+    box-shadow: var(--box-shadow);
+}
+
+/* Ajuste do padding do body para o menu não ficar em cima do título */
+body {
+    padding-top: 0;
+    background-color: #fdf9f9;
+}
+
+/* Estilização do Conteúdo Principal */
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    min-height: 60vh; /* Garante que o footer fique lá embaixo */
+}
+
+main .container {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+main h1 {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+main h1 + p {
+    color: var(--text-light);
+}
+
+/* Seções do texto */
+main section {
+    background: #fff;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--primary-color); /* Detalhe dourado */
+    transition: transform 0.3s ease;
+}
+
+main section:hover {
+    transform: translateY(-5px);
+}
+
+main h2 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+main p {
+    color: var(--text-color);
+    line-height: 1.8;
+    margin-bottom: 0;
+}
+
+main a {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+main a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Responsividade simples para o texto */
+@media (max-width: 768px) {
+    main h1 {
+        font-size: 2rem;
+    }
+    
+    main section {
+        padding: 20px;
+    }
+}
