@@ -531,8 +531,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Define as frases para desktop e mobile
     const desktopText = "Transformando ideias em soluções digitais";
-    const mobileLine1 = "Transformando ideias em,";
-    const mobileLine2 = "soluções digitais";
+    const mobileLine1 = "Sua ideia,";
+    const mobileLine2 = "nossa solução!";
 
     // Escolhe a frase com base no tamanho da tela
     const isMobile = window.innerWidth <= 768;
