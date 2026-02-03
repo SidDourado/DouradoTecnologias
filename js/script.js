@@ -527,23 +527,47 @@ document.addEventListener('DOMContentLoaded', function () {
 //EFEITO DIGITACAO
 document.addEventListener("DOMContentLoaded", function () {
     const el = document.getElementById("typing");
+    const el2 = document.getElementById("typing2");
 
     // Define as frases para desktop e mobile
     const desktopText = "Transformando ideias em soluções digitais";
-    const mobileText = "Sua ideia, nossa solução!";
+    const mobileLine1 = "Transformando ideias em,";
+    const mobileLine2 = "soluções digitais";
 
     // Escolhe a frase com base no tamanho da tela
     const isMobile = window.innerWidth <= 768;
-    const textToType = isMobile ? mobileText : desktopText;
 
-    // Aplica o texto e calcula o comprimento
-    el.textContent = textToType;
-    const length = textToType.length;
+    if (isMobile) {
+        // Mobile: duas linhas com animação sequencial
+        el.textContent = mobileLine1;
+        el2.textContent = mobileLine2;
 
-    // Define variáveis CSS e animações
-    el.style.setProperty("--text-length", `${length}ch`);
-    el.style.width = "0ch";
-    el.style.animation = `typing ${length / 8}s steps(${length}) forwards, blink 0.7s step-end infinite`;
+        const length1 = mobileLine1.length;
+        const length2 = mobileLine2.length;
+        const duration1 = length1 / 8;
+        const duration2 = length2 / 8;
+
+        // Primeira linha
+        el.style.setProperty("--text-length", `${length1}ch`);
+        el.style.width = "0ch";
+        el.style.animation = `typing ${duration1}s steps(${length1}) forwards, blink 0.7s step-end infinite`;
+
+        // Segunda linha (começa após a primeira terminar)
+        el2.style.setProperty("--text-length", `${length2}ch`);
+        el2.style.width = "0ch";
+        el2.style.animation = `typing ${duration2}s steps(${length2}) ${duration1}s forwards, blink 0.7s step-end infinite`;
+        el2.style.display = "block";
+    } else {
+        // Desktop: uma linha normal
+        el.textContent = desktopText;
+        const length = desktopText.length;
+        el.style.setProperty("--text-length", `${length}ch`);
+        el.style.width = "0ch";
+        el.style.animation = `typing ${length / 8}s steps(${length}) forwards, blink 0.7s step-end infinite`;
+
+        // Esconde a segunda linha no desktop
+        if (el2) el2.style.display = "none";
+    }
 });
 
 
