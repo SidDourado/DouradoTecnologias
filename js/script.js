@@ -546,6 +546,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const length2 = mobileLine2.length;
         const duration1 = length1 / 8;
         const duration2 = length2 / 8;
+        const totalDuration = (duration1 + duration2) * 1000; // em milissegundos
 
         // Primeira linha
         el.style.setProperty("--text-length", `${length1}ch`);
@@ -557,16 +558,30 @@ document.addEventListener("DOMContentLoaded", function () {
         el2.style.width = "0ch";
         el2.style.animation = `typing ${duration2}s steps(${length2}) ${duration1}s forwards, blink 0.7s step-end infinite`;
         el2.style.display = "block";
+
+        // Remove o cursor após a animação terminar
+        setTimeout(() => {
+            el.style.borderRight = "none";
+            el2.style.borderRight = "none";
+        }, totalDuration + 500);
+
     } else {
         // Desktop: uma linha normal
         el.textContent = desktopText;
         const length = desktopText.length;
+        const duration = length / 8;
+
         el.style.setProperty("--text-length", `${length}ch`);
         el.style.width = "0ch";
-        el.style.animation = `typing ${length / 8}s steps(${length}) forwards, blink 0.7s step-end infinite`;
+        el.style.animation = `typing ${duration}s steps(${length}) forwards, blink 0.7s step-end infinite`;
 
         // Esconde a segunda linha no desktop
         if (el2) el2.style.display = "none";
+
+        // Remove o cursor após a animação terminar
+        setTimeout(() => {
+            el.style.borderRight = "none";
+        }, duration * 1000 + 500);
     }
 });
 
